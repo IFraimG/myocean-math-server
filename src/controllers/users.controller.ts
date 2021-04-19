@@ -1,5 +1,5 @@
 import { UsersService } from './../services/users.service';
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
 
 @Controller("users")
 export class UsersController {
@@ -23,5 +23,15 @@ export class UsersController {
     @Get("/id/:id")
     getUserID(@Param("id") id: string) {
         return this.users.getUserByID(id)
+    }
+
+    @Get("/finished/:userID")
+    getFinishedTasks(@Param("userID") userID: string) {
+        return this.users.getFinishedTasks(userID)
+    }
+
+    @Put("/save")
+    saveTasks(@Body("tasksList") tasksList: Array<any>, @Body("userID") userID: string) {
+        return this.users.saveTasks(tasksList, userID)
     }
 }

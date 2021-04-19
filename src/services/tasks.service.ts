@@ -43,7 +43,32 @@ export class TasksService {
     }
     
     async getTasksForLevel() {
-      let tasks = await this.Tasks.find().limit(5).lean().exec()
-      return tasks
+      let tasks = await this.Tasks.find().lean().exec()
+      let arrIndex: Array<number> = []
+      let i = 0;
+      while (i < 5) {
+        let num = Math.floor(Math.random() * tasks.length);
+        if (!arrIndex.includes(num)) {
+          arrIndex[i] = num
+          i++;
+        }
+      }
+
+      let tasksArray = []
+      for (let j = 0; j < i; j++) {
+        tasksArray[j] = tasks[arrIndex[j]]
+      }
+
+      return tasksArray
+    }
+
+    async findTasks(arrTasksID: Array<string>) {
+      let arrTasks = []
+      arrTasksID.map(async item => {
+        let res = await this.Tasks.findOne({id: item}).exec()
+        if (res != null) arrTasks.push(res)
+      })
+
+      return arrTasks
     }
 }

@@ -28,6 +28,9 @@ export class Task {
 
     @Prop({ required: false, unique: false })
     token: String
+
+    @Prop({ required: false, unique: false })
+    src: string
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task)

@@ -1,3 +1,4 @@
+import { TasksModule } from './tasks.module';
 import { PassportModule } from '@nestjs/passport';
 import { UsersService } from './../services/users.service';
 import { UsersController } from './../controllers/users.controller';
@@ -7,6 +8,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 
 @Module({ 
     imports: [
+        TasksModule,
         MongooseModule.forFeature([{name: "Users", schema: UserSchema}]), 
         PassportModule.register({ defaultStrategy: 'jwt', session: false }),
     ],
