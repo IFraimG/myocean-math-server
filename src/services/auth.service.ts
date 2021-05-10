@@ -27,6 +27,6 @@ export class AuthSerivce {
     }
     public async login(user: any) {
         let token = await this.jwtService.signAsync({email: user.email, id: user.id})
-        return { user, token }
+        return { user, token };
     }
 }

@@ -1,5 +1,5 @@
 import { TasksService } from './../services/tasks.service';
-import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Delete } from "@nestjs/common";
 
 @Controller("tasks")
 export class TasksController {
@@ -11,7 +11,7 @@ export class TasksController {
     }
 
     @Get("/all")
-    allUsers() {
+    allTasks() {
         return this.tasks.findAll()
     }
 
@@ -24,5 +24,9 @@ export class TasksController {
     createToken(@Body("userID") userID: string) {
         return this.tasks.createToken(userID)
     }
-    
+
+    @Delete("/delete/:task")
+    deleteTasks(@Param("task") taskID: string) {
+        return this.tasks.deleteTasks(taskID)
+    }
 }

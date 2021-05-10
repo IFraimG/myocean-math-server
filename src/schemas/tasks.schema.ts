@@ -31,6 +31,9 @@ export class Task {
 
     @Prop({ required: false, unique: false })
     src: string
+
+    @Prop({ required: true, unique: false, default: 1 })
+    level: number
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task)

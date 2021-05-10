@@ -71,4 +71,9 @@ export class TasksService {
 
       return arrTasks
     }
+
+    async deleteTasks(taskID: string) {
+      let task = await this.Tasks.findOneAndRemove({id: taskID}).exec()
+      return task
+    }
 }
